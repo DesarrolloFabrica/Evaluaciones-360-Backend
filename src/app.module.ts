@@ -2,6 +2,10 @@ import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
+import { AreasModule } from "./areas/areas.module";
+import { ProgramsModule } from "./programs/programs.module";
+import { LinesModule } from "./lines/lines.module";
+
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -20,7 +24,12 @@ import { TypeOrmModule } from "@nestjs/typeorm";
           database: config.get<string>("DB_NAME"),
 
           autoLoadEntities: true,
-          synchronize: false,
+
+          // synchronize: true para pruebas
+          synchronize: true,
+          // synchronize: false para entorno oficial
+          // synchronize: false,
+          
           logging: config.get<string>("TYPEORM_LOGGING") === "true",
 
           ssl: sslEnabled ? { rejectUnauthorized: false } : false,
@@ -30,6 +39,11 @@ import { TypeOrmModule } from "@nestjs/typeorm";
         };
       },
     }),
+
+    // ✅ modules
+    AreasModule,
+    ProgramsModule,
+    LinesModule,
   ],
 })
 export class AppModule {}

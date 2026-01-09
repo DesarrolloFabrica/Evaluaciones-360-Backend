@@ -12,7 +12,7 @@ import {
 import { ProgramEntity } from "../../programs/entities/program.entity";
 import { UserEntity } from "src/users/entities/user.entity";
 
-@Entity("lineales")
+@Entity("lines")
 @Index(["programId", "name"], { unique: true })
 export class LinesEntity {
   @PrimaryGeneratedColumn("uuid")
