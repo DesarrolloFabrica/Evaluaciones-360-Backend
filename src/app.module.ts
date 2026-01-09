@@ -1,3 +1,4 @@
+import { UsersModule } from './users/users.module';
 import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
@@ -44,6 +45,7 @@ import { LinesModule } from "./lines/lines.module";
     AreasModule,
     ProgramsModule,
     LinesModule,
+    UsersModule, 
   ],
 })
 export class AppModule {}
